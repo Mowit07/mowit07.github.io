@@ -16,24 +16,21 @@
   <meta name="author" content="mowit">
   <meta name="keywords" content="">
   
-    <meta name="description" content="安卓逆向hook解法">
+    <meta name="description" content="[SWPU 2019]easyapp简单objection解法jadx打开apk文件分析 123456789101112131415161718192021222324252627282930313233343536package com.example.ndktest2;import android.os.Bundle;import android.view.View;import androi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2022鹏城杯Baby_Re">
-<meta property="og:url" content="https://mowit07.github.io/2024/04/16/[2022%E9%B9%8F%E5%9F%8E%E6%9D%AF%20baby_Re]/index.html">
+<meta property="og:title" content="Mowit">
+<meta property="og:url" content="https://mowit07.github.io/2024/04/16/[SWPU%202019]easyapp%E7%9A%84hook%E8%A7%A3%E6%B3%95/index.html">
 <meta property="og:site_name" content="Mowit">
-<meta property="og:description" content="安卓逆向hook解法">
+<meta property="og:description" content="[SWPU 2019]easyapp简单objection解法jadx打开apk文件分析 123456789101112131415161718192021222324252627282930313233343536package com.example.ndktest2;import android.os.Bundle;import android.view.View;import androi">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mowit07.github.io/mdimg/CTFtrain/maomao1.png">
-<meta property="article:published_time" content="2024-04-16T07:51:36.032Z">
-<meta property="article:modified_time" content="2024-04-16T08:06:39.220Z">
+<meta property="article:published_time" content="2024-04-16T08:13:40.233Z">
+<meta property="article:modified_time" content="2024-04-16T07:33:19.009Z">
 <meta property="article:author" content="mowit">
-<meta property="article:tag" content="安卓逆向">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mowit07.github.io/mdimg/CTFtrain/maomao1.png">
   
   
   
-  <title>2022鹏城杯Baby_Re - Mowit</title>
+  <title>Mowit</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -222,13 +219,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/maomao1.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/defaul.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="2022鹏城杯Baby_Re"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -244,7 +241,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-16 15:51" pubdate>
+        <time datetime="2024-04-16 16:13" pubdate>
           2024年4月16日 下午
         </time>
       </span>
@@ -256,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2k 字
+          2.1k 字
         
       </span>
     
@@ -267,7 +264,7 @@
         
         
         
-          17 分钟
+          18 分钟
         
       </span>
     
@@ -312,17 +309,20 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">2022鹏城杯Baby_Re</h1>
+            <h1 id="seo-header"></h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="2022鹏城杯-baby-Re"><a href="#2022鹏城杯-baby-Re" class="headerlink" title="2022鹏城杯 baby_Re"></a>2022鹏城杯 baby_Re</h1><p>拖进jadx查看代码</p>
-<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-built_in">public</span> <span class="hljs-type">void</span> onCreate(Bundle savedInstanceState) &#123;<br>    super.onCreate(savedInstanceState);<br>    ActivityMainBinding inflate = ActivityMainBinding.inflate(getLayoutInflater());<br>    Intrinsics.checkNotNullExpressionValue(inflate, &quot;inflate(layoutInflater)&quot;);<br>    this.binding = inflate;<br>    <span class="hljs-keyword">if</span> (inflate == <span class="hljs-keyword">null</span>) &#123;<br>        Intrinsics.throwUninitializedPropertyAccessException(&quot;binding&quot;);<br>        inflate = <span class="hljs-keyword">null</span>;<br>    &#125;<br>    setContentView(inflate.getRoot());<br>    final <span class="hljs-type">int</span>[] c = &#123;<span class="hljs-number">119</span>, <span class="hljs-number">9</span>, <span class="hljs-number">40</span>, <span class="hljs-number">44</span>, <span class="hljs-number">106</span>, <span class="hljs-number">83</span>, <span class="hljs-number">126</span>, <span class="hljs-number">123</span>, <span class="hljs-number">33</span>, <span class="hljs-number">87</span>, <span class="hljs-number">113</span>, <span class="hljs-number">123</span>, <span class="hljs-number">112</span>, <span class="hljs-number">93</span>, <span class="hljs-number">125</span>, <span class="hljs-number">127</span>, <span class="hljs-number">41</span>, <span class="hljs-number">82</span>, <span class="hljs-number">44</span>, <span class="hljs-number">127</span>, <span class="hljs-number">39</span>, <span class="hljs-number">3</span>, <span class="hljs-number">126</span>, <span class="hljs-number">125</span>, <span class="hljs-number">119</span>, <span class="hljs-number">87</span>, <span class="hljs-number">47</span>, <span class="hljs-number">125</span>, <span class="hljs-number">33</span>, <span class="hljs-number">6</span>, <span class="hljs-number">44</span>, <span class="hljs-number">127</span>, <span class="hljs-number">112</span>, <span class="hljs-number">0</span>, <span class="hljs-number">126</span>, <span class="hljs-number">123</span>, <span class="hljs-number">115</span>, <span class="hljs-number">24</span>&#125;;<br>    ((Button) _$_findCachedViewById(R.id.btn)).setOnClickListener(<span class="hljs-built_in">new</span> <span class="hljs-keyword">View</span>.OnClickListener() &#123; // <span class="hljs-keyword">from</span> <span class="hljs-keyword">class</span>: com.example.createso.MainActivity$$<span class="language-pgsql">ExternalSyntheticLambda0</span><br><span class="language-pgsql">        @Override // android.<span class="hljs-keyword">view</span>.<span class="hljs-keyword">View</span>.OnClickListener</span><br><span class="language-pgsql">        <span class="hljs-built_in">public</span> final <span class="hljs-type">void</span> onClick(<span class="hljs-keyword">View</span> <span class="hljs-keyword">view</span>) &#123;</span><br><span class="language-pgsql">            MainActivity.m26onCreate$lambda0(MainActivity.this, c, <span class="hljs-keyword">view</span>);</span><br><span class="language-pgsql">        &#125;</span><br><span class="language-pgsql">    &#125;);</span><br><span class="language-pgsql">&#125;</span><br><span class="language-pgsql"></span><br><span class="language-pgsql"><span class="hljs-comment">/* JADX INFO: Access modifiers changed from: private */</span></span><br><span class="language-pgsql"><span class="hljs-comment">/* renamed from: onCreate$lambda-0  reason: not valid java name */</span></span><br><span class="language-pgsql"><span class="hljs-built_in">public</span> static final <span class="hljs-type">void</span> m26onCreate$lambda0(MainActivity this<span class="hljs-meta">$0</span>, <span class="hljs-type">int</span>[] c, <span class="hljs-keyword">View</span> it) &#123;</span><br><span class="language-pgsql">    Intrinsics.checkNotNullParameter(this<span class="hljs-meta">$0</span>, &quot;this$0&quot;);</span><br><span class="language-pgsql">    Intrinsics.checkNotNullParameter(c, &quot;$c&quot;);</span><br><span class="language-pgsql">    IntStream flag = ((EditText) this<span class="hljs-meta">$0</span>._$_findCachedViewById(R.id.<span class="hljs-keyword">input</span>)).getText().toString().chars();</span><br><span class="language-pgsql">    <span class="hljs-type">int</span>[] <span class="hljs-keyword">array</span> = flag.toArray();</span><br><span class="language-pgsql">    Intrinsics.checkNotNullExpressionValue(<span class="hljs-keyword">array</span>, &quot;flag.toArray()&quot;);</span><br><span class="language-pgsql">    <span class="hljs-type">int</span>[] cipher = this<span class="hljs-meta">$0</span>.baby_xor(<span class="hljs-keyword">array</span>);</span><br><span class="language-pgsql">    <span class="hljs-keyword">if</span> (Arrays.equals(cipher, c)) &#123;</span><br><span class="language-pgsql">        Toast.makeText(this<span class="hljs-meta">$0</span>, &quot;Success&quot;, <span class="hljs-number">1</span>).<span class="hljs-keyword">show</span>();</span><br><span class="language-pgsql">    &#125; <span class="hljs-keyword">else</span> &#123;</span><br><span class="language-pgsql">        Toast.makeText(this<span class="hljs-meta">$0</span>, &quot;Failed&quot;, <span class="hljs-number">0</span>).<span class="hljs-keyword">show</span>();</span><br><span class="language-pgsql">    &#125;</span><br><span class="language-pgsql">&#125;</span><br><span class="language-pgsql"></span><br></code></pre></td></tr></table></figure>
-<p>Java层负责接收flag内容，xor的判断在native层<br>主要是一个xor加密后的内容要和c的值一致，c的值已经给出了</p>
-<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">c</span> = &#123;<span class="hljs-number">119</span>, <span class="hljs-number">9</span>, <span class="hljs-number">40</span>, <span class="hljs-number">44</span>, <span class="hljs-number">106</span>, <span class="hljs-number">83</span>, <span class="hljs-number">126</span>, <span class="hljs-number">123</span>, <span class="hljs-number">33</span>, <span class="hljs-number">87</span>, <span class="hljs-number">113</span>, <span class="hljs-number">123</span>, <span class="hljs-number">112</span>, <span class="hljs-number">93</span>, <span class="hljs-number">125</span>, <span class="hljs-number">127</span>, <span class="hljs-number">41</span>, <span class="hljs-number">82</span>, <span class="hljs-number">44</span>, <span class="hljs-number">127</span>, <span class="hljs-number">39</span>, <span class="hljs-number">3</span>, <span class="hljs-number">126</span>, <span class="hljs-number">125</span>, <span class="hljs-number">119</span>, <span class="hljs-number">87</span>, <span class="hljs-number">47</span>, <span class="hljs-number">125</span>, <span class="hljs-number">33</span>, <span class="hljs-number">6</span>, <span class="hljs-number">44</span>, <span class="hljs-number">127</span>, <span class="hljs-number">112</span>, <span class="hljs-number">0</span>, <span class="hljs-number">126</span>, <span class="hljs-number">123</span>, <span class="hljs-number">115</span>, <span class="hljs-number">24</span>&#125;<br></code></pre></td></tr></table></figure>
-<p>有一个根本不用看native层里面的xor的key值的方法<br>直接hook这个baby_xor方法然后手机输入123456789  和26个字母看它给的返回值是什么和c值一个一个对就行了<br><img src="/picture111/pcb.png" srcset="/img/loading.gif" lazyload alt="pcb.png"></p>
-<p>解得flag{6700280a84487e46f76f2f60ce4ae70b}</p>
+                <h1 id="SWPU-2019-easyapp简单objection解法"><a href="#SWPU-2019-easyapp简单objection解法" class="headerlink" title="[SWPU 2019]easyapp简单objection解法"></a>[SWPU 2019]easyapp简单objection解法</h1><p>jadx打开apk文件分析</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.ndktest2;<br><span class="hljs-keyword">import</span> android.os.Bundle;<br><span class="hljs-keyword">import</span> android.view.View;<br><span class="hljs-keyword">import</span> android.widget.Button;<br><span class="hljs-keyword">import</span> android.widget.EditText;<br><span class="hljs-keyword">import</span> android.widget.Toast;<br><span class="hljs-keyword">import</span> androidx.appcompat.app.AppCompatActivity;<br><br><span class="hljs-comment">/* loaded from: classes.dex */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AppCompatActivity</span> &#123;<br>    <span class="hljs-keyword">private</span> EditText password;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">native</span> String <span class="hljs-title function_">Encrypt</span><span class="hljs-params">()</span>;<br><br>    <span class="hljs-keyword">static</span> &#123;<br>        System.loadLibrary(<span class="hljs-string">&quot;native-lib&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/* JADX INFO: Access modifiers changed from: protected */</span><br>    <span class="hljs-meta">@Override</span> <span class="hljs-comment">// androidx.appcompat.app.AppCompatActivity, androidx.fragment.app.FragmentActivity, androidx.core.app.ComponentActivity, android.app.Activity</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> &#123;<br>        <span class="hljs-built_in">super</span>.onCreate(savedInstanceState);<br>        setContentView(R.layout.activity_main);<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">EditText</span> <span class="hljs-variable">password</span> <span class="hljs-operator">=</span> (EditText) findViewById(R.id.password);<br>        ((Button) findViewById(R.id.login)).setOnClickListener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">View</span>.OnClickListener() &#123; <span class="hljs-comment">// from class: com.example.ndktest2.MainActivity.1</span><br>            <span class="hljs-meta">@Override</span> <span class="hljs-comment">// android.view.View.OnClickListener</span><br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onClick</span><span class="hljs-params">(View view)</span> &#123;<br>                <span class="hljs-keyword">if</span> (password.getText().toString().equals(MainActivity.<span class="hljs-built_in">this</span>.Encrypt())) &#123;<br>                    Toast.makeText(MainActivity.<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;登录成功&quot;</span>, <span class="hljs-number">1</span>).show();<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    Toast.makeText(MainActivity.<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;登录失败&quot;</span>, <span class="hljs-number">0</span>).show();<br>                &#125;<br>            &#125;<br>        &#125;);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>发现调用了Native层的Encrypt函数返回值，这一段和password进行了比较</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">password<span class="hljs-selector-class">.getText</span>()<span class="hljs-selector-class">.toString</span>()<span class="hljs-selector-class">.equals</span>(MainActivity<span class="hljs-selector-class">.this</span><span class="hljs-selector-class">.Encrypt</span>())<br></code></pre></td></tr></table></figure>
+<p>直接使用frida和objection配合,先启用frida的服务</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs maxima">C:\Users\Mowit&gt;adb devices<br>* daemon <span class="hljs-keyword">not</span> running; starting now <span class="hljs-built_in">at</span> tcp:<span class="hljs-number">5037</span><br>* daemon started successfully<br>List of devices attached<br><span class="hljs-number">1239b413</span>        device<br><br><br>C:\Users\Mowit&gt;adb shell<br>ginkgo:/ $ su<br>ginkgo:/ #<br>ginkgo:/ # cd data/<span class="hljs-built_in">local</span>/tmp<br>ginkgo:/data/<span class="hljs-built_in">local</span>/tmp # ls<br>busybox  crackme1.apk  frida-server-<span class="hljs-number">16.2</span><span class="hljs-number">.1</span>-android-arm64<br>ginkgo:/data/<span class="hljs-built_in">local</span>/tmp # ./frida-server-<span class="hljs-number">16.2</span><span class="hljs-number">.1</span>-android-arm64<br></code></pre></td></tr></table></figure>
+<p>然后使用objection直接hook获取encrypt（）返回值,命令如下</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><br>objection -g com<span class="hljs-selector-class">.example</span><span class="hljs-selector-class">.ndktest2</span> explore<br><br><br>android hooking watch class_method com<span class="hljs-selector-class">.example</span><span class="hljs-selector-class">.ndktest2</span><span class="hljs-selector-class">.MainActivity</span><span class="hljs-selector-class">.Encrypt</span> <span class="hljs-attr">--dump-args</span> <span class="hljs-attr">--dump-backtrace</span> <span class="hljs-attr">--dump-return</span><br></code></pre></td></tr></table></figure>
+<p>得到返回值Return Value: YouaretheB3ST<br>登陆成功</p>
 
                 
               </div>
@@ -331,41 +331,6 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/CTF/" class="category-chain-item">CTF</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/CTF/Write-Up/" class="category-chain-item">Write Up</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/" class="print-no-link">#安卓逆向</a>
-      
-    </div>
   
 </div>
 
@@ -375,8 +340,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>2022鹏城杯Baby_Re</div>
-      <div>https://mowit07.github.io/2024/04/16/[2022鹏城杯 baby_Re]/</div>
+      <div></div>
+      <div>https://mowit07.github.io/2024/04/16/[SWPU 2019]easyapp的hook解法/</div>
     </div>
     <div class="license-meta">
       
@@ -420,18 +385,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/04/16/%5BSWPU%202019%5Deasyapp%E7%9A%84hook%E8%A7%A3%E6%B3%95/" title="">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/12/21/%E4%B8%80%E9%81%93%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%80%83%E9%80%B8/" title="反序列化字符串逃逸">
-                        <span class="hidden-mobile">反序列化字符串逃逸</span>
+                      <a href="/2024/04/16/%5B2022%E9%B9%8F%E5%9F%8E%E6%9D%AF%20baby_Re%5D/" title="2022鹏城杯Baby_Re">
+                        <span class="hidden-mobile">2022鹏城杯Baby_Re</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
