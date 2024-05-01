@@ -5,6 +5,19 @@
   
   <entry>
     <title></title>
+    <link href="/2024/05/01/2020%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%84%E5%A4%8D%E7%8E%B0/"/>
+    <url>/2024/05/01/2020%E7%BD%91%E9%BC%8E%E6%9D%AF%E9%9D%92%E9%BE%99%E7%BB%84%E5%A4%8D%E7%8E%B0/</url>
+    
+    <content type="html"><![CDATA[<h1 id="2020网鼎杯青龙组bang-复现"><a href="#2020网鼎杯青龙组bang-复现" class="headerlink" title="2020网鼎杯青龙组bang 复现"></a>2020网鼎杯青龙组bang 复现</h1><p>jadx打开apk查看源码 mainactivity内容不可读推测加壳<br><img src="a586d1feea6fbc7a6718efde5dd45f6f.png" alt="alt text"><br>使用frida-dexdump脱壳工具代码如下</p><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs stylus">frida-dexdump -U -f com<span class="hljs-selector-class">.example</span><span class="hljs-selector-class">.how_debug</span><br>jadx查看包名为com<span class="hljs-selector-class">.example</span>.how_debug<br></code></pre></td></tr></table></figure><p>脱壳成功后打开dex文件定位登录代码<br>可以全局搜索MainActivity主入口找到登录判断函数</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
     <link href="/2024/05/01/CISC%E5%8D%8E%E5%8C%972022/"/>
     <url>/2024/05/01/CISC%E5%8D%8E%E5%8C%972022/</url>
     
